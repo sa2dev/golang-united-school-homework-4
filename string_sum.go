@@ -49,7 +49,8 @@ func StringSum(input string) (output string, err error) {
 		return "", fmt.Errorf(anErrorOccurred+": %w", errorNotTwoOperands)
 	}
 
-	return "", fmt.Errorf(anErrorOccurred)
+	numbers[1] = "-" + numbers[1]
+	return sumTwoInt(numbers)
 }
 
 func sumTwoInt(input []string) (output string, err error) {
