@@ -38,13 +38,15 @@ func StringSum(input string) (output string, err error) {
 
 	if strings.HasPrefix(strings.TrimSpace(input), "-") {
 		newInput := strings.Replace(input, "-", "", 1)
-		println(newInput)
 		newInput = strings.Replace(newInput, "-", "+", 1)
-		println(newInput)
 		numbers := strings.Split(newInput, "+")
-		println(numbers)
 		res, err := sumTwoInt(numbers)
 		return "-" + res, err
+	}
+
+	numbers := strings.Split(input, "-")
+	if len(numbers) != 2 || strings.TrimSpace(numbers[0]) == "" || strings.TrimSpace(numbers[1]) == "" {
+		return "", fmt.Errorf(anErrorOccurred+": %w", errorNotTwoOperands)
 	}
 
 	return "", fmt.Errorf(anErrorOccurred)
@@ -52,7 +54,7 @@ func StringSum(input string) (output string, err error) {
 
 func sumTwoInt(input []string) (output string, err error) {
 
-	if len(input) != 2 {
+	if len(input) != 2 || strings.TrimSpace(input[0]) == "" || strings.TrimSpace(input[1]) == "" {
 		return "", fmt.Errorf(anErrorOccurred+": %w", errorNotTwoOperands)
 	}
 
