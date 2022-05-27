@@ -13,6 +13,7 @@ var (
 	errorEmptyInput = errors.New("input is empty")
 	// Use when the expression has number of operands not equal to two
 	errorNotTwoOperands = errors.New("expecting two operands, but received more or less")
+	anErrorOccurred     = "an error occurred"
 )
 
 // Implement a function that computes the sum of two int numbers written as a string
@@ -46,23 +47,23 @@ func StringSum(input string) (output string, err error) {
 		return "-" + res, err
 	}
 
-	return "", fmt.Errorf("an error occurred")
+	return "", fmt.Errorf(anErrorOccurred)
 }
 
 func sumTwoInt(input []string) (output string, err error) {
 
 	if len(input) != 2 {
-		return "", fmt.Errorf("an error occurred: 	%w", errorNotTwoOperands)
+		return "", fmt.Errorf(anErrorOccurred+": %w", errorNotTwoOperands)
 	}
 
 	firstNumber, err := strconv.Atoi(strings.TrimSpace(input[0]))
 	if err != nil {
-		return "", fmt.Errorf("an error occurred: 	%w", err)
+		return "", fmt.Errorf(anErrorOccurred+": %w", err)
 	}
 
 	secondNumber, err := strconv.Atoi(strings.TrimSpace(input[1]))
 	if err != nil {
-		return "", fmt.Errorf("an error occurred: 	%w", err)
+		return "", fmt.Errorf(anErrorOccurred+": %w", err)
 	}
 
 	return strconv.Itoa(firstNumber + secondNumber), nil
